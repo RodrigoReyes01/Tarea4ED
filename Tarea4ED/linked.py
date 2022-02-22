@@ -1,13 +1,3 @@
-from platform import node
-from flask import Flask, render_template, request, url_for, redirect
-from jinja2 import Template, FileSystemLoader, Environment
-
-templates = FileSystemLoader('templates')
-environment = Environment(loader = templates)
-
-app = Flask(__name__)
-
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -71,38 +61,39 @@ class LinkedList:
                 return
             previous_node = node
 
-lista = LinkedList()
-
-@app.route('/')
-def home():
-    return render_template('')
-
-@app.route('/add/<song>', methods=["GET","POST"])
-def add(song):
-    return lista.add_first(Node(song))
+#linkedList
+llist = LinkedList()
+print(llist)
 
 
-@app.route('/play', methods=["GET"])
-def play():
-    pass
+first_node = Node("c")
+llist.head = first_node
+print(llist)
 
-@app.route('/getlist', methods=["GET"])
-def list():
-    pass
+second_node = Node("d")
+first_node.next = second_node
+print(llist)
 
-@app.route('/prev', methods=["GET"])
-def prev():
-    pass
-
-@app.route('/next', methods=["GET"])
-def next():
-    pass
-
-@app.route('/delete', methods=["DELETE"])
-def delete():
-    pass
+#add first
+llist.add_first(Node("b"))
+print(llist)
 
 
+llist.add_first(Node("a"))
+print(llist)
 
-if __name__ == '__main__':
-    app.run(host = "0.0.0.0", port = 5000, debug = True)
+#add last
+llist.add_last(Node("e"))
+print(llist)
+
+
+llist.add_last(Node("f"))
+print(llist)
+
+#remove
+llist.remove_node("a")
+print(llist)
+
+
+llist.remove_node("e")
+print(llist)
