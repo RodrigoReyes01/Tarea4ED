@@ -70,6 +70,17 @@ class LinkedList:
                 previous_node.next = node.next
                 return
             previous_node = node
+    
+    def pop_front(self):
+        if(self.head != None):
+            temp = self.head
+            self.head = self.head.next
+            return self.head.data
+    
+    def peek(self):
+        if(self.head != None):
+            return self.head.data
+        
 
 lista = LinkedList()
 
@@ -79,28 +90,31 @@ def home():
 
 @app.route('/add/<song>', methods=["GET","POST"])
 def add(song):
-    return lista.add_first(Node(song))
+    lista.add_first(Node(song))
+    print(lista)
+    return str(lista)
 
 
 @app.route('/play', methods=["GET"])
 def play():
-    pass
+    return str(lista.peek())
 
 @app.route('/getlist', methods=["GET"])
 def list():
-    pass
+    return str(lista)
 
 @app.route('/prev', methods=["GET"])
 def prev():
     pass
 
-@app.route('/next', methods=["GET"])
+@app.route('/next', methods=["GET", "DELETE"])
 def next():
-    pass
+    return str(lista.pop_front())
 
-@app.route('/delete', methods=["DELETE"])
-def delete():
-    pass
+@app.route('/delete/<song>', methods=["DELETE"])
+def delete(song):
+    lista.remove_node(Node(song))
+    return str(lista)
 
 
 

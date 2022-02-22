@@ -61,6 +61,12 @@ class LinkedList:
                 return
             previous_node = node
 
+    def pop_front(self):
+        if(self.head != None):
+            temp = self.head
+            self.head = self.head.next
+            temp = None 
+
 #linkedList
 llist = LinkedList()
 print(llist)
@@ -97,3 +103,8 @@ print(llist)
 
 llist.remove_node("e")
 print(llist)
+
+llist.pop_front()
+print(llist)
+
+print(str(llist))
