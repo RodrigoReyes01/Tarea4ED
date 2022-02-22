@@ -111,9 +111,9 @@ def prev():
 def next():
     return str(lista.pop_front())
 
-@app.route('/delete/<song>', methods=["DELETE"])
+@app.route('/delete/<song>', methods=["GET", "DELETE"])
 def delete(song):
-    lista.remove_node(Node(song))
+    lista.remove_node(song)
     return str(lista)
 
 
